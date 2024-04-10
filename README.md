@@ -17,6 +17,7 @@ A fun way to visualise the incidence of an event within or across geographies is
 
 ![MexicoMap](https://github.com/michelleg06/DataViz/blob/main/images/cloropleths.png)
 
+**The `R`code snippet**
 ```r
 p <- merged_sf_data %>%
         filter(year == 2010) %>%
@@ -37,5 +38,5 @@ p_series <- merged_sf_data %>%
                     ggtitle("Property Tax in Mexican Municipalities: 2010:2021")
                                  
 ```
-
+*Note: The snippet above does not include the data wrangling part*
   
