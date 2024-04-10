@@ -15,4 +15,27 @@ A fun way to visualise the incidence of an event within or across geographies is
 
   **The end result:**
 
+![MexicoMap](https://github.com/michelleg06/DataViz/blob/main/images/cloropleths.png)
+
+```r
+p <- merged_sf_data %>%
+        filter(year == 2010) %>%
+            ggplot() +
+            geom_sf(aes(fill = `Property Tax in USD ppp`)) + # Color fill based on property tax in USD (ppp)
+            scale_fill_distiller(palette = "Spectral", trans = "reverse") +     
+            theme_void() +
+            scale_fill_gradientn(colors = col_palette, labels = scales::label_comma()) + 
+            ggtitle("Property Tax in Mexican Municipalities: 2010")
+
+p_series <- merged_sf_data %>%
+                    filter(year >= 2010) %>%
+                    ggplot() +
+                    geom_sf(aes(fill = `Property Tax in USD ppp`)) +
+                    facet_wrap(~ year, nrow = 3) + 
+                    theme_void() +
+                    scale_fill_gradientn(colors = col_palette, labels = scales::label_comma()) +
+                    ggtitle("Property Tax in Mexican Municipalities: 2010:2021")
+                                 
+```
+
   
