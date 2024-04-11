@@ -44,6 +44,13 @@ p_series <- merged_sf_data %>%
 
 Visualising the distribution of a variable can give us pretty good insights on the statistical properties of the vector and practical implications on what we're trying to offer. Below I'll show a few visualisations that I enjoy: split histograms, and overlapping density distributions. 
 
-![KdensityPlot](https://github.com/michelleg06/DataViz/blob/main/images/kdens_plot.pdf)
+- **Overlaying kernel density distributions**
+![KdensityPlot](https://github.com/michelleg06/DataViz/blob/main/images/kdens_plot.png)
+
+The density plot shows the distribution of a numeric continuous vector, here called utilities. You can plot this vector for subgroups of your data. Here, I wanted to compare the distributions between experimental participants (treated and control) in a sample. Whilst the analysis showed a trivial mean difference between these two subgroups, visualising the overlaid density plots clearly shows that there's a group that exihibits higher utility. These words, with little to no context, can be meaningless. But you can think of these distributions as scores: with a large overlap, there is a group of people with a higher score _en masse_. Fun, quick finding eh?
+
+
+
+
 
 
