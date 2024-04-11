@@ -44,4 +44,6 @@ p_series <- merged_sf_data %>%
 
 Visualising the distribution of a variable can give us pretty good insights on the statistical properties of the vector and practical implications on what we're trying to offer. Below I'll show a few visualisations that I enjoy: split histograms, and overlapping density distributions. 
 
+![KdensityPlot](https://github.com/michelleg06/DataViz/blob/main/images/kdens_plot.pdf)
+
 
