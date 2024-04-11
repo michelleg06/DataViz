@@ -50,6 +50,22 @@ Visualising the distribution of a variable can give us pretty good insights on t
 
 The density plot shows the distribution of a numeric continuous vector, here called utilities. You can plot this vector for subgroups of your data. Here, I wanted to compare the distributions between experimental participants (treated and control) in a sample. Whilst the analysis showed a trivial mean difference between these two subgroups, visualising the overlaid density plots clearly shows that there's a group that exihibits higher utility. These words, with little to no context, can be meaningless. But you can think of these distributions as scores: with a large overlap, there is a group of people with a higher score _en masse_. Fun, quick finding eh?
 
+To draw these sort of overlaying plots you just need one package:
+* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
+
+... and the following snippet:
+
+```r
+kdensplot <- ggplot(baseline, aes(x=baseline_utility, fill=treatment)) + # declare which dataset you're using, x = continuous variable to plot, fill = group by which to split
+                geom_density(alpha=0.80, color="grey90") + theme_classic() + # alpha = opacity of the fill colours, color = color of the density line (border)
+                xlab("Population baseline utilities") + 
+                ylab("Density") + 
+                ggtitle("Kernel density of utilities") +
+                theme(plot.title = element_text(color="grey22", size=14, face="bold", hjust = 0.5)) + # play around with this line to change the style of the text in the title
+                scale_fill_manual("Treatment Status", labels=c("Control","Treatment"), values=c("darkgrey","grey90")) # fill in the density with your own colours, I chose shades of gray
+    
+```
+
 
 
 
