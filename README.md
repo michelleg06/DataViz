@@ -69,9 +69,20 @@ kdensplot <- ggplot(baseline, aes(x=baseline_utility, fill=treatment)) + # decla
 ```
 - **Same-grid histograms**
   
-<img src="https://github.com/michelleg06/DataViz/blob/main/images/hist_facetwrap.png" width="350" height="300">
+<img src="https://github.com/michelleg06/DataViz/blob/main/images/hist_facetwrap.png" width="400" height="300">
 
 When you simply want to observe the shape of the distribution by subgroups, but are not worried about overlaps, simply plotting two histograms next to each other will do. This is probably useful when the subgroups of your sample you want to look at are clearly distinct. Also, I was clearly enjoying the basic grey aesthetic for these plots 😉. 
+
+P.S. In the snippet below you'll recognise the facet_wrap argument, which we used for our maps as well! 
+
+```r
+utilities_academics <- ggplot(baseline, aes(x=baseline_utility)) + # declare the dataset, x = variable to plot
+                                geom_histogram(col="gray", fill=NA, aes(y = stat(density))) + theme_classic() + # borders coloured grey, y scale density of variable, theme classic (no grid lines)
+                                xlab("Population baseline utilities") + # add a label on the x axis
+                                ggtitle("Distribution of utilities") + # add a title to my plot
+                                facet_wrap(~baseline$academics) # now use the above elemnts to plot two contiguous histograms, based on the two-category variable 'academics'
+
+```
 
 
 
