@@ -83,6 +83,10 @@ utilities_academics <- ggplot(baseline, aes(x=baseline_utility)) + # declare the
                                 facet_wrap(~baseline$academics) # now use the above elemnts to plot two contiguous histograms, based on the two-category variable 'academics'
 
 ```
+## Scatterplots
+
+A scatterplot is the standard way to visualise the relationship between two features. I'm going to have a little fun using the [Gapminder](https://www.gapminder.org/) data. Gapminder is the brain-child of the late Hans Rosling, who was keen on visualising trends over time, and showing us that the world is not so terrible through global trend analysis. 
+
 
 
 
