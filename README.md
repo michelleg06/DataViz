@@ -44,16 +44,18 @@ p_series <- merged_sf_data %>%
 
 Visualising the distribution of a variable can give us pretty good insights on the statistical properties of the vector and practical implications on what we're trying to offer. Below I'll show a few visualisations that I enjoy: split histograms, and overlapping density distributions. 
 
+To draw theseplots I only used one package:
+* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
+
 - **Overlaying kernel density distributions**
 
 <img src="https://github.com/michelleg06/DataViz/blob/main/images/kdens_plot.png" width="350" height="300">
 
 The density plot shows the distribution of a numeric continuous vector, here called utilities. You can plot this vector for subgroups of your data. Here, I wanted to compare the distributions between experimental participants (treated and control) in a sample. Whilst the analysis showed a trivial mean difference between these two subgroups, visualising the overlaid density plots clearly shows that there's a group that exihibits higher utility. These words, with little to no context, can be meaningless. But you can think of these distributions as scores: with a large overlap, there is a group of people with a higher score _en masse_. Fun, quick finding eh?
 
-To draw these sort of overlaying plots you just need one package:
-* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
 
-... and the following snippet:
+
+To replicate this type of plot you can use the following code snippet:
 
 ```r
 kdensplot <- ggplot(baseline, aes(x=baseline_utility, fill=treatment)) + # declare which dataset you're using, x = continuous variable to plot, fill = group by which to split
@@ -65,6 +67,11 @@ kdensplot <- ggplot(baseline, aes(x=baseline_utility, fill=treatment)) + # decla
                 scale_fill_manual("Treatment Status", labels=c("Control","Treatment"), values=c("darkgrey","grey90")) # fill in the density with your own colours, I chose shades of gray
     
 ```
+- **Same-grid histograms**
+  
+<img src="https://github.com/michelleg06/DataViz/blob/main/images/hist_facetwrap.png" width="350" height="300">
+
+When you simply want to observe the shape of the distribution by subgroups, but are not worried about overlaps, simply plotting two histograms next to each other will do. This is probably useful when the subgroups of your sample you want to look at are clearly distinct. Also, I was clearly enjoying the basic grey aesthetic for these plots 😉. 
 
 
 
