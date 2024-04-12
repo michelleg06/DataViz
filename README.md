@@ -44,10 +44,10 @@ p_series <- merged_sf_data %>%
 
 Visualising the distribution of a variable can give us pretty good insights on the statistical properties of the vector and practical implications on what we're trying to offer. Below I'll show a few visualisations that I enjoy: split histograms, and overlapping density distributions. 
 
-To draw theseplots I only used one package:
+To draw these plots I only used one package:
 * {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
 
-- **Overlaying kernel density distributions**
+**Overlaying kernel density distributions**
 
 <img src="https://github.com/michelleg06/DataViz/blob/main/images/kdens_plot.png" width="350" height="300">
 
@@ -67,7 +67,7 @@ kdensplot <- ggplot(baseline, aes(x=baseline_utility, fill=treatment)) + # decla
                 scale_fill_manual("Treatment Status", labels=c("Control","Treatment"), values=c("darkgrey","grey90")) # fill in the density with your own colours, I chose shades of gray
     
 ```
-- **Same-grid histograms**
+**Same-grid histograms**
   
 <img src="https://github.com/michelleg06/DataViz/blob/main/images/hist_facetwrap.png" width="400" height="300">
 
