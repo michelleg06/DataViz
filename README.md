@@ -96,8 +96,7 @@ For the animated scatterplot below, I've used the following packages:
 
 **The animated scatterplot (.gif):**
 
-
-
+![life_exp_gdp](https://github.com/michelleg06/DataViz/assets/17123522/6fa849c4-371f-4de9-9f85-52d6aa816c20)
 
 
 
