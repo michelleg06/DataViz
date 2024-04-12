@@ -98,6 +98,22 @@ For the animated scatterplot below, I've used the following packages:
 
 ![life_exp_gdp](https://github.com/michelleg06/DataViz/assets/17123522/6fa849c4-371f-4de9-9f85-52d6aa816c20)
 
+To `R` code:
+
+```r
+p <- ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
+            geom_point(alpha=0.5) + theme_minimal() + 
+            xlab("GDP per capita (logged)") +
+            ylab("Life Expectancy of Population") +
+            scale_x_log10(labels = scales::dollar) + 
+            facet_wrap(~continent) +
+            labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+            transition_time(year) + 
+            ease_aes('linear') + 
+            guides(color = FALSE)
+
+anim_save("life_exp_gdp.gif")
+```
 
 
 
