@@ -87,6 +87,16 @@ utilities_academics <- ggplot(baseline, aes(x=baseline_utility)) + # declare the
 
 A scatterplot is the standard way to visualise the relationship between two features. I'm going to have a little fun using the [Gapminder](https://www.gapminder.org/) data. Gapminder is the brain-child of the late Hans Rosling, who was keen on visualising trends over time, and showing us that the world is not so terrible through global trend analysis. 
 
+For the animated scatterplot below, I've used the following packages:
+
+* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
+* {[scales](https://cran.r-project.org/web/packages/scales/index.html)}: a package that scales map data to aesthetics, and provides methods for automatically determining breaks and labels for axes and legends.
+* {[gganimate](https://gganimate.com/)}: a package that extends the grammar of graphics as implemented by ggplot2 to include the description of animation. It does this by providing a range of new grammar classes that can be added to the plot object in order to customise how it should change with time.
+* {[gapminder](https://cran.r-project.org/web/packages/gapminder/index.html)}: a package that provides an excerpt of the data available at Gapminder.org. For each of 142 countries, the package provides values for life expectancy, GDP per capita, and population, every five years, from 1952 to 2007.
+
+**The animated scatterplot (.gif):**
+
+
 
 
 
