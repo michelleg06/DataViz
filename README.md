@@ -39,7 +39,8 @@ p_series <- merged_sf_data %>%
                                  
 ```
 *Note 1: The snippet above does not include the data wrangling to get the final dataset, feel free to reach out to me if you want to learn how to do that.*
-*Note 2: To put both images in one .png file I used Canva. Alternatively, *
+
+*Note 2: To put both images in one .png file I used Canva. Alternatively, you can use the [`grid.arrange`](https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html) function from the `gridExtra`package.*
 
 
 ## Distributions
