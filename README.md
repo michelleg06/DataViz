@@ -98,7 +98,7 @@ For the animated scatterplot below, I've used the following packages:
 
 ![life_exp_gdp](https://github.com/michelleg06/DataViz/assets/17123522/6fa849c4-371f-4de9-9f85-52d6aa816c20)
 
-To `R` code:
+**To `R` code:**
 
 ```r
 p <- ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color=continent)) +
@@ -133,7 +133,7 @@ As always, the packages involved in this design include:
 
 ![PenguinBarChart](https://github.com/michelleg06/DataViz/blob/main/images/pengbar.png)
 
-**The code snippet:**
+**The `R` code snippet:**
 ```r
 # Upload image to Rstudio
 library(magick) # add images
