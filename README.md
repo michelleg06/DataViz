@@ -1,7 +1,7 @@
-# Storytelling with `data viz` ![Logo](https://github.com/michelleg06/DataViz/blob/main/images/Storytelling.png)
+# Storytelling with `data-viz` ![Logo](https://github.com/michelleg06/DataViz/blob/main/images/Storytelling.png)
 
 ## Introduction
-This repository hosts graphs and other forms of data visualisation that I have found useful for my research. The compendium is not exhaustive, and will be evolving as I discover new ways to express data graphically - or I endeavour to write a visual story for policy audiences. Most of what I visualise is done with `R` package `ggplot2`. Some visualisations will come from `Python` 🐍, and some additional edits might be done outside of a programming language. I will indicate this when or if it happens. 
+This repository hosts graphs and other forms of data visualisation that I have found useful for my research. The compendium is not exhaustive, and will be evolving as I discover new ways to express data graphically - or I endeavour to write a visual story for policy audiences. Most of what I visualise is done with 🇷 package `ggplot2`. Some visualisations will come from `Python` 🐍, and some additional edits might be done outside of a programming language. I will indicate this when or if it happens. 
 
 -----
 
