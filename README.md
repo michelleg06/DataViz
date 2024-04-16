@@ -116,5 +116,74 @@ anim_save("life_exp_gdp.gif")
 ```
 
 
+## Customised Visuals
 
+`ggplot2`and its seemingly infinte add-ons allows you to programatically customise your data visuals as much as you want. The simple bar graph below is an example of combining your creativity with the `magick` and `sysfonts`packages. This is meant to be a fun bar chart for children who, like me, enjoy learning about penguins 🐧!
+
+As always, the packages involved in this design include:
+
+* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
+* {[magick](https://docs.ropensci.org/magick/articles/intro.html)}: a package that provides a modern and simple toolkit for image processing in R. It wraps the ImageMagick STL which is the most comprehensive open-source image processing library available today.
+* {[sysfonts](https://cran.r-project.org/web/packages/sysfonts/index.html)}: Loading system fonts and Google Fonts <https://fonts.google.com/> into R, in order to support other packages such as 'R2SWF' and 'showtext'.
+* {[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/articles/intro.html)}: A package that contains two datasets for  statistics and data science education, as well as software documentation and testing.
+
+*Note: I obtained the image and the colour scheme from the `palmerpenguins` vignette.*
+
+**The result:**
+
+**The code snippet:**
+```r
+# Upload image to Rstudio
+library(magick) # add images
+penguins_img <- image_read("https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png")
+
+# Add a custom font for fun
+library(sysfonts) # add more fonts to the system
+library(showtext) # to work with different fonts
+
+font_add_google("Schoolbell")
+showtext_auto() # turn on/off the automatic use of showtext functionality
+
+# Heavily customise your bar graph!
+
+img_order <- c("Chinstrap", "Gentoo", "Adelie" )
+
+pengbar <- penguins %>%
+    dplyr::filter(!is.na(sex)) %>% # filter for non-missing values in random (in this case sex) variable
+    dplyr::count(species) %>% # count the number of penguins of each species 
+    mutate(species = factor(species, levels = img_order)) %>% # Specify preferred order # replace the order of the species to a preferred order, specified above
+    ggplot(aes(x = species, y = n, fill = species)) + # x is factor var, y is the n count variable returned by the dplyr count function
+    geom_col(width = 0.7, color = "black") + # define the width of the bars and the border colour
+    scale_fill_manual(values = c("darkorchid2", "aquamarine4", "darkorange"), # change the fol
+                      guide = guide_legend(override.aes = list(shape = NA))) + # Remove default legend symbols
+    labs(x = "Species", y = "Number of penguins", fill = "Species:") # specify labels
+
+pengbar <- pengbar +
+    scale_y_continuous(expand = c(0, 0), limits = c(0, 165)) +
+    theme_classic(base_size = 15, base_family = "Schoolbell") +
+    theme(
+        panel.background = element_rect(fill = "white", color = "grey30"),
+        panel.border = element_rect(fill = NA, color = "white"),
+        legend.background = element_rect(fill = "white", color = "grey93"),
+        plot.background = element_rect(fill = "white", color = NA),
+        axis.text.x = element_text(face = "italic"),
+        axis.text.y = element_text(face = rep(c("bold", "plain"), 10), angle = 30),
+        axis.title = element_text(face = "bold", family = "Schoolbell"),
+        legend.title = element_text(face = "bold", family = "Schoolbell")
+    )
+
+# define image placement
+
+img_x <- with(penguins, as.numeric(factor(species))) # x axis 
+img_y <- rep(10, n_distinct(penguins$species)) # y axis
+
+pengbar <- pengbar + 
+    annotation_custom(
+        rasterGrob(image = penguins_img, interpolate = TRUE),
+        xmin = min(img_x) - 0.05, xmax = max(img_x) + .05,
+        ymin = -99, ymax = 150
+    )
+
+print(pengbar)
+```
 
