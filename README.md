@@ -1,4 +1,4 @@
-# Storytelling with `data-viz` ![Logo](https://github.com/michelleg06/DataViz/blob/main/images/Storytelling.png)
+# Storytelling with `data-viz` ![Logo](https://github.com/michelleg06/DataViz/blob/main/images/logo-dv2.png)
 
 ## Introduction
 This repository hosts graphs and other forms of data visualisation that I have found useful for my research. The compendium is not exhaustive, and will be evolving as I discover new ways to express data graphically - or I endeavour to write a visual story for policy audiences. Most of what I visualise is done with the 🇷 package `ggplot2`. Some visualisations will be made in the `Python` 🐍 language, and some additional edits might be done outside of a programming language (I have been known to use the Adobe suite and Canva from time to time). I will indicate this when or if it happens. 
