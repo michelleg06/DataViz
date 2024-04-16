@@ -131,6 +131,8 @@ As always, the packages involved in this design include:
 
 **The result:**
 
+![PenguinBarChart](https://github.com/michelleg06/DataViz/blob/main/images/pengbar.png)
+
 **The code snippet:**
 ```r
 # Upload image to Rstudio
