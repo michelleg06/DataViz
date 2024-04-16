@@ -38,7 +38,9 @@ p_series <- merged_sf_data %>%
                     ggtitle("Property Tax in Mexican Municipalities: 2010:2021")
                                  
 ```
-*Note: The snippet above does not include the data wrangling part.*
+*Note 1: The snippet above does not include the data wrangling to get the final dataset, feel free to reach out to me if you want to learn how to do that.*
+*Note 2: To put both images in one .png file I used Canva. Alternatively, *
+
 
 ## Distributions
 
