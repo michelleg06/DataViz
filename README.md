@@ -27,7 +27,7 @@ The visualisation below is composed of three cloropleths: one per year 1970 - 20
 * {[RColorBrewer:](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: A package that provides color schemes for maps (and other graphics).
 * {[maps](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: display of maps. Projection code and larger maps are in separate packages ('mapproj' and 'mapdata').
 
-![OECDcloropleths](https://github.com/michelleg06/DataViz/blob/main/images/Women%20can%20take%20the%20same%20jobs%20as%20men.pdf)
+![OECDcloropleths](https://github.com/michelleg06/DataViz/blob/main/images/Women%20can%20take%20the%20same%20jobs%20as%20men.png)
 
 **Code Snippets**
 I'll update the code to replicate these visuals in due time. These plots required a bit more work than the graphs below, and I need to parse code lines and generally make the scripts as easy to read as everything below. I promise to get to it! 😀
