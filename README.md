@@ -17,6 +17,76 @@ As always, the `R`packages used were:
 
 ![OECDBarGraph](https://github.com/michelleg06/DataViz/blob/main/images/bar_plot_with_flags.png)
 
+**Code snippet**
+
+```r
+
+# Choose a color palette and assign an object to it. Highlight the OECD average bar.
+color_palette <- c("OECD" = "cornflowerblue", "Mexico" = "grey", "France" = "grey", "Egypt" = "grey","Ecuador" = "grey", "Denmark" = "grey", "Brazil" = "grey", "Belgium" = "grey", "Argentina" = "grey")
+
+# reorder the dataset in a descending order based on the violence_score variable, i.e. the computed score for quality of law for the protection of women victims of physical violence
+reordered_df <- df_country[order(-df_country$violence_score), ]
+
+# add a vector containing the URL for flag images
+reordered_df$url_flag <- c("https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Brazil_flag.png","https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_France.png","https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_Mexico.png","https://raw.githubusercontent.com/michelleg06/DataViz/main/images/flag_argentina.png", "https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_Belgium.png","https://raw.githubusercontent.com/michelleg06/DataViz/main/images/OECD_logo.png", "https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_Ecuador.png", "https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_Denmark.png", "https://raw.githubusercontent.com/michelleg06/DataViz/main/images/Flag_of_Egypt.png")
+
+# create base graph bar
+
+bar_2 <- ggplot(reordered_df, aes(x = reorder(Country, -violence_score), y = violence_score, fill = Country)) +
+    geom_bar(stat = "identity", width=0.5, position = position_dodge(width = 0.3)) +
+    coord_flip() + 
+    geom_text(aes(label = paste0(round(violence_score, 1), "%")), hjust = 1.2, colour = "white", fontface = "bold") +
+    labs(x = "", y = bquote(bold("Score"))) +
+    scale_fill_manual(values = color_palette) +  # Use color palette defined above
+    theme_classic() +
+    theme(
+        #axis.title.x = element_blank(),  # Hide x-axis title
+        axis.title.y = ggtext::element_markdown(),  # to edit titles using markdown 
+        plot.title = element_blank(),    
+        panel.grid.major.y = element_blank(),  
+        panel.grid.minor.y = element_blank(),   
+        legend.position = "none"         
+    ) +
+    ylim(0, max(df_country$violence_score) + 10)  # add some extra space at the top
+
+# function to transform png into grob class
+read_flag_grob_url <- function(flag_url) {
+    img <- image_read(flag_url)
+    grob <- rasterGrob(image = img, interpolate = TRUE)
+    return(grob)
+}
+
+# for loop: iterate over the rows of dataset (or iterate over each country)
+for (i in 1:nrow(reordered_df)) {
+    bar_2 <- bar_2 + annotation_custom(
+        grob = read_flag_grob_url(reordered_df$url_flag[i]),
+        xmin = i - 0.25, xmax = i + 0.25,  # Adjust x-position and width of the flag
+        ymin = reordered_df$violence_score[i] + 1, ymax = reordered_df$violence_score[i] + 5  # Adjust y-position and height of the flag
+    ) # paste the in each bar the grob class which corresponds to the order in the dataset, uses the grob function above
+}
+
+# read OECD logo as png
+logo <- image_read("~/Desktop/OECD.png")
+
+# Create a title with the logo using cowplot
+title_with_logo <- ggdraw() +
+    draw_image(logo, x = 0.01, y = 0.1, width = 0.1) +  # Adjust x, y, and width as needed
+    draw_label("Are women protected from physical violence by the law?\n", x = 0.12, y = 0.55, 
+               hjust = 0, vjust = 0.5, fontface = "bold", size = 18) + 
+    draw_label(label = "Score in %, based on the 2023 Social Institutions and Gender Index (SIGI).The score rates the countries's laws with regards to the protection\nof women who experience        physical abuse.", 
+               size = 10, x = 0.12, y = 0.38, hjust = 0, vjust = 0.5)
+
+# Combine the title with the bar plot using cowplot's plot_grid()
+final_plot <- plot_grid(
+    title_with_logo,
+    bar_2,
+    ncol = 1,
+    rel_heights = c(0.2, 0.5)  # Adjust the relative heights of the title and the bar plot
+)
+
+ggsave("bar_plot_with_flags.png", plot = final_plot, width = 10, height = 8, units = "in", dpi = 300, bg = "white")
+```
+
 **Some cloropleths**
 
 The visualisation below is composed of three cloropleths: one per year 1970 - 2000 - 2023. It lets us see the evolution of gender equality in access to employment across the globe. You'll notice that the US and the UK are missing. Polygon data for those countries was not available. Fear not, it is easy to find, and I'll do so in the coming weeks. The cloropleths were done in R. However, the logos and titles were done with Canva Pro. For the maps, the `R`packages include:
@@ -27,12 +97,59 @@ The visualisation below is composed of three cloropleths: one per year 1970 - 20
 * {[RColorBrewer:](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: A package that provides color schemes for maps (and other graphics).
 * {[maps](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: display of maps. Projection code and larger maps are in separate packages ('mapproj' and 'mapdata').
 
-![OECDcloropleths](https://github.com/michelleg06/DataViz/blob/main/images/Women%20can%20take%20the%20same%20jobs%20as%20men.png)
+![OECDcloropleths](https://github.com/michelleg06/DataViz/blob/main/images/Women%20can%20take%20the%20same%20jobs%20as%20men2.png)
 
-**Code Snippets**
-I'll update the code to replicate these visuals in due time. These plots required a bit more work than the graphs below, and I need to parse code lines and generally make the scripts as easy to read as everything below. I promise to get to it! 😀
+**Code Snippet:**
+
+```r
+# get the shape
+world <- map_data('world') # from maps library
+
+# we need to transform it into an sf object first
+world_sf <- world %>%
+    st_as_sf(coords = c("long", "lat"), crs = 4326) %>% #(CRS) number 4326 corresponds to the WGS 84 
+    group_by(group, region) %>% # groups by group (mandatory) but also keeps region (needed to merge to other world/country files)
+    summarize(geometry = st_combine(geometry)) %>%
+    st_cast("POLYGON")
+
+# CRS - coordinate ref system
+st_crs(world_sf) #CRS assigned!
+
+# merge data subset for the year 1970 with the lat and long sf dataset
+merged_df_70 <- map70 %>% left_join(world_sf, by ="region")
+merged_sf_data70 <- st_as_sf(merged_df_70)
+
+# make sure our variable of interest is in factor class
+merged_sf_data70 <- merged_sf_data70 %>%
+    mutate(same_job_label = factor(same_job, levels = c(0, 1), labels = c("No", "Yes")))
+
+# use ggplot to draw the map with geom_sf() :)
+map_sf_70 <- merged_sf_data70 %>%
+                    ggplot() +
+                    geom_sf(aes(fill = same_job_label)) + # Color fill based on binary factor women can take the same job as men
+                    scale_fill_manual(values = c("No" = "#FFE5B4", "Yes" = "cornflowerblue"), 
+                      name = "Gender Equality in Jobs") + 
+                    theme_minimal() + 
+                    labs(title = "Women can take the same jobs as men 1970")+
+                    theme(
+                        axis.text = element_blank(),# remove latitude/longitude text
+                        axis.ticks = element_blank(),# remove axis ticks
+                        panel.grid = element_blank(),# remove grid lines
+                        plot.title = element_text(size = 15, face = "bold"),
+                        plot.background = element_rect(fill = "white"),  # set plot background to white
+                        legend.key = element_rect(fill = "white")  # set legend background to white
+                    )
+
+# repeat the process above for subsets of the data that correspond to the year 2000 and 2023.
+# Once the three maps have been plotted, place them in the same grid:
+
+library(gridExtra)
+grid.arrange(map_sf_70,map_sf_2000,map_sf_23)
+
+```
 
 **Easter Egg**
+
 Although gganimate is the standard for dynamic ggplots, there's loads of other alternatives. One of them is the camcorder pkg. The gif below shows the evolution of the cloropleths in gif format. P.S. I also recommend D3 and Svelte for dynamic plots.
 
 ![maps_oecd_gif](https://github.com/michelleg06/DataViz/blob/main/images/maps_oecd.gif)
@@ -40,6 +157,34 @@ Although gganimate is the standard for dynamic ggplots, there's loads of other a
 The package:
 
 * {[camcorder](https://github.com/thebioengineer/camcorder)}: an R package to track and automatically save graphics generated with {ggplot2} that are created across one or multiple sessions with the eventual goal of creating a GIF showing all the plots saved sequentially during the design process.
+
+**Code Snippet**
+
+```r
+library(camcorder)
+paths <- "~/Desktop/"
+gg_record(
+    dir = file.path(paths, "record_maps"), # where to save the recording
+    device = "png", # device to use to save images
+    width = 16,      # width of saved image
+    height = 24,     # height of saved image
+    units = "in",   # units for width and height
+    dpi = 600       # dpi to use when saving image
+)
+
+map_sf_70 
+map_sf_2000 
+map_sf_23 
+# ran all the ggplots above
+
+gg_playback(
+    name = file.path(paths, "record_maps", "maps_oecd.gif"),
+    first_image_duration = 5,
+    last_image_duration = 5,
+    frame_duration = .4,
+    image_resize = 1000
+)
+```
 
 -----
 ## Maps
