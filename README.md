@@ -32,6 +32,11 @@ The visualisation below is composed of three cloropleths: one per year 1970 - 20
 **Code Snippets**
 I'll update the code to replicate these visuals in due time. These plots required a bit more work than the graphs below, and I need to parse code lines and generally make the scripts as easy to read as everything below. I promise to get to it! 😀
 
+**Easter Egg**
+Although gganimate is the standard for dynamic ggplots, there's loads of other alternatives. One of them is the camcorder pkg. The gif below shows the evolution of the cloropleths in gif format. P.S. I also recommend D3 and Svelte for dynamic plots.
+
+![maps_oecd_gif](https://github.com/michelleg06/DataViz/blob/main/images/maps_oecd.gif)
+
 -----
 ## Maps
 
