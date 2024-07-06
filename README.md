@@ -37,6 +37,10 @@ Although gganimate is the standard for dynamic ggplots, there's loads of other a
 
 ![maps_oecd_gif](https://github.com/michelleg06/DataViz/blob/main/images/maps_oecd.gif)
 
+The package:
+
+* {[camcorder](https://github.com/thebioengineer/camcorder)}: an R package to track and automatically save graphics generated with {ggplot2} that are created across one or multiple sessions with the eventual goal of creating a GIF showing all the plots saved sequentially during the design process.
+
 -----
 ## Maps
 
