@@ -17,6 +17,18 @@ As always, the `R`packages used were:
 
 ![OECDBarGraph](https://github.com/michelleg06/DataViz/blob/main/images/bar_plot_with_flags.png)
 
+**Some cloropleths**
+
+The visualisation below is composed of three cloropleths: one per year 1970 - 2000 - 2023. It lets us see the evolution of gender equality in access to employment across the globe. You'll notice that the US and the UK are missing. Polygon data for those countries was not available. Fear not, it is easy to find, and I'll do so in the coming weeks. The cloropleths were done in R. However, the logos and titles were done with Canva Pro. For the maps, the `R`packages include:
+
+* {[ggplot2](https://ggplot2.tidyverse.org/)}: a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl).
+* {[gridExtra](https://cran.r-project.org/web/packages/gridExtra/index.html)}: a package that provides a number of user-level functions to work with "grid" graphics, notably to arrange multiple grid-based plots on a page, and draw tables.
+* {[sf](https://r-spatial.github.io/sf/)}: A package that provides [simple features access](https://en.wikipedia.org/wiki/Simple_Features) for R.
+* {[RColorBrewer:](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: A package that provides color schemes for maps (and other graphics).
+* {[maps](https://cran.r-project.org/web/packages/RColorBrewer/index.html)}: display of maps. Projection code and larger maps are in separate packages ('mapproj' and 'mapdata').
+
+![OECDcloropleths](https://github.com/michelleg06/DataViz/blob/main/images/Women%20can%20take%20the%20same%20jobs%20as%20men.pdf)
+
 -----
 ## Maps
 
